@@ -6,6 +6,8 @@
 
 计划本系列先按照 Heron 官方文档的描述方式来介绍 Heron，当然笔者英语水平有限，可能有一些描述不准确的地方，还请在 issue 中指出。我希望自己能坚持下来，也欢迎更多的朋友加入。
 
+heronstreaming --- 该文件夹尝试对 [Heron](http://twitter.github.io/heron/) 进行翻译工作，优先翻译与开发密切相关的页面
+
 注：
 
  * 所有文字工作仅代表个人观点，与 Twitter.Inc 没有任何关系。
