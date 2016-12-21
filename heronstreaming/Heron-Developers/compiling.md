@@ -5,7 +5,7 @@
 现今，Heron 支持 Mac OS X 10.10 、Ubuntu 14.04 以及 CentOS7 三个平台，本文档旨在介绍 Heron 的构建体系，如需进一步了解相关平台的编译细节，请参考如下文档。
 
 * [Building on Linux Platforms](../../../Heron-Developers/compiling/linux)
-* [Building on Mac OS X](../compiling-on-MaxOSX)
+* [Building on Mac OS X](../Heron-Developers/compiling-on-MaxOSX)
 
 Heron 支持开发者进行全编译，独立组件编译，发布可执行版本。
 
