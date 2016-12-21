@@ -4,7 +4,7 @@
 
 现今，Heron 支持 Mac OS X 10.10 、Ubuntu 14.04 以及 CentOS7 三个平台，本文档旨在介绍 Heron 的构建体系，如需进一步了解相关平台的编译细节，请参考如下文档。
 
-* [Building on Linux Platforms](../../../Heron-Developers/compiling/linux)
+* [Building on Linux Platforms](../Heron-Developers/compiling-on-Linux.md)
 * [Building on Mac OS X](../Heron-Developers/compiling-on-MacOSX.md)
 
 Heron 支持开发者进行全编译，独立组件编译，发布可执行版本。
@@ -38,7 +38,7 @@ $ echo $CC $CXX
 
 ## 安装 Bazel (Installing Bazel)
 
-Heron 使用 [Bazel](http://bazel.io) 做为其构建工具。Bazel 的发布版本可点击如下[链接](https://github.com/bazelbuild/bazel/releases)，可在[安装指南](http://bazel.io/docs/install.html)中找到相关的安装必要信息。
+Heron 使用 [Bazel](http://bazel.io) 做为其构建工具。Bazel 的发布版本可点击如下[链接](https://github.com/bazelbuild/bazel/releases)，可在[安装指南](http://bazel.io/docs/install.html) 中找到相关的安装必要信息。
 
 可以运行 `bazel version` 命令来校验 Bazel 是否安装成功并能正常运行。
 
@@ -102,3 +102,11 @@ $ bazel build --config=darwin heron/tools/tracker/src/python:heron-tracker
 ***笔者后记***
 
 本文档仅仅从介绍了一下 Heron 的编译概要，具体到某个指定平台的编译细节，可以在相关文档中找到。Heron 使用 C++、Java、Python 三种语言开发，所以以上三种编译环境必须按照 Heron 所需准备妥当，不然是无法进行正常编译的。如果说一定有什么特别需要注意的，那就是尽量要有一个畅通无阻的网络环境，以便编译时可以正常下载依赖 Jar。
+
+- **在 Linux 平台上运行 Heron 是否可以使用 darwin 版本的？** *答案是不行的，Heron 有部分代码使用 C++ 编写，平台不同决定了 C++ 的运行时环境也不同*
+
+- **如果我的生产环境是 Linux 平台，那我如何在 Mac 上进行开发呢？** *这是一个非常好的、也是非常常见的问题。同时也是笔者最初接触 Heron 困扰的问题之一。手边没有 Linux 机器，但还要编译对应的版本。好不容易找到一台 Linux 机器，配置一系列运行时依赖库又非常麻烦，怎么办呢？Heron 是为我们提供对应解决方案的。Heron 提供了一种利用 Docker 的编译方式。我们可以在 Docker 中编译任何已经提供的平台的 Heron 版本。当然，前提条件是，你有一个非常不错的网络环境，可以正常下载相关依赖。*
+
+- **编译环境报错怎么办？** *据笔者自身经验，网络环境多半会是真凶*
+
+- **编译时有没有什么需要注意的？** *确保你的运行时环境已经安装了所有 Heron 所需要的依赖库，确保你已经按照文档介绍的版本进行 Bazel 的安装，确保你有一个干净的网络环境，然后就可以放心大胆的执行命令了！*
