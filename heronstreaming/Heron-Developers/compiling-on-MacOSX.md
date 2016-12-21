@@ -75,4 +75,4 @@ $ bazel build --config=darwin scripts/packages:binpkgs
 $ bazel build --config=darwin scripts/packages:tarpkgs
 ```
 
-生成的脚本目录：`bazel-bin/scripts/packages/`
+生成的脚本目录：`bazel-bin/scripts/packages/`。
