@@ -77,13 +77,13 @@ TM 有大量的可配置参数贯穿拓扑的整个生命周期，你可以在[�
 ***笔者注释***
 
 ```
-针对 Heron 的背压机制可以打个比方就是：上游的兄弟们，我这儿快忙不过来了，你们先歇会儿，等我忙完了，你们在发数据。
+针对 Heron 的背压机制可以打个比方：上游的兄弟们，我这儿快忙不过来了，你们先歇会儿，等我忙完了，你们在发数据。
 
-“由谁来感知“忙不过来呢？”  -- 由当前 container 所运行SM。
+“由谁来感知'忙'不过来呢？”  -- 由当前 container 所运行SM。
 
 “用什么样的方式来告知兄弟们呢？” -- 由 SM 来告知它兄弟们。
 
-“由谁来暂时切断数据流入呢？” -- 由当前 container 所运行SM。
+“由谁来暂时切断数据流入呢？” -- 由当前 container 所运行 SM。
 
 直观来看，背压机制有效的防止了拓扑的因缓冲区爆满而导致异常崩溃。但同时要意识到，一旦触发了背压机制，可能意味着这段时间内拓扑的处理量已经达到系统瓶颈，应做适当调整。
 ```
@@ -96,7 +96,7 @@ TM 有大量的可配置参数贯穿拓扑的整个生命周期，你可以在[�
 
 一个 **Heron Instance**(简称 HI) 具体对应处理一个 [spout](../Heron-Concepts/Heron-Topology.md#spouts) 或是一个 [bolt](../Heron-Concepts/Heron-Topology.md#bolts)。通过这种方式，可以让开发者调试和调优。
 
-目前，Heron 仅支持 Java，所以所有的 HI 都是一个独立的 [JVM] (https://en.wikipedia.org/wiki/Java_virtual_machine)进程，未来会支持更多语言。
+目前，Heron 仅支持 Java，所以所有的 HI 都是一个独立的 [JVM] (https://en.wikipedia.org/wiki/Java_virtual_machine) 进程，未来会支持更多语言。
 
 ***笔者注释：Heron 的 0.14.5 版本已经支持 Python on Heron 了***
 
