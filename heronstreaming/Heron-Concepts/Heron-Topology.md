@@ -14,15 +14,15 @@ Spout 负责将 tuple 发送到拓扑中，bolt 负责接收并处理这些 tupl
 
 在你正确配置[Heron cluster](http://twitter.github.io/heron/docs/operators/deployment) 后，你就能通过 Heron [CLI tool](http://twitter.github.io/heron/docs/operators/heron-cli) 来管理拓扑了 ***笔者注释：Heron UI 可以用来进行拓扑状态监控，但目前还没有提供可视化的拓扑状态管理的入口。目前只能通过命令行的方式来管理拓扑状态*** 。拓扑可能的生命周期如下所示：
 
-1. 提交[submit](http://twitter.github.io/heron/docs/operators/heron-cli#submitting-a-topology) 提交拓扑至集群。此时拓扑已随时做好被激活的准备。
+1. 提交([submit](http://twitter.github.io/heron/docs/operators/heron-cli#submitting-a-topology))拓扑至集群。此时拓扑已随时做好被激活的准备。
 
-2. 激活[activate](http://twitter.github.io/heron/docs/operators/heron-cli#activating-a-topology) 拓扑。拓扑会按照你所定义的构建方式来处理数据。
+2. 激活([activate](http://twitter.github.io/heron/docs/operators/heron-cli#activating-a-topology))拓扑。拓扑会按照你所定义的构建方式来处理数据。
 
-3. 重启[restart](http://twitter.github.io/heron/docs/operators/heron-cli#restarting-a-topology) 拓扑。如果你需要更新某些拓扑配置，比如一些新的参数，你可以选择重启拓扑。
+3. 重启([restart](http://twitter.github.io/heron/docs/operators/heron-cli#restarting-a-topology))拓扑。如果你需要更新某些拓扑配置，比如一些新的参数，你可以选择重启拓扑。
 
-4. 暂停[deactivate](http://twitter.github.io/heron/docs/operators/heron-cli#deactivating-a-topology) 拓扑。拓扑会停止计算，但还会驻留在集群中。
+4. 暂停([deactivate](http://twitter.github.io/heron/docs/operators/heron-cli#deactivating-a-topology))拓扑。拓扑会停止计算，但还会驻留在集群中。
 
-5. 杀死[kill](http://twitter.github.io/heron/docs/operators/operators/heron-cli#killing-a-topology) 拓扑。执行此命令后，集群会把拓扑移除。一旦被 kill 若想重新运行相关计算，只能重新提交拓扑(re-submit)。
+5. 杀死([kill](http://twitter.github.io/heron/docs/operators/operators/heron-cli#killing-a-topology))拓扑。执行此命令后，集群会把拓扑移除。一旦被 kill 若想重新运行相关计算，只能重新提交拓扑(re-submit)。
 
 ## Spouts
 
