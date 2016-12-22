@@ -12,7 +12,7 @@ Spout 负责将 tuple 发送到拓扑中，bolt 负责接收并处理这些 tupl
 
 ## 拓扑生命周期 (Topology Lifecycle)
 
-在你正确配置 [Heron cluster](http://twitter.github.io/heron/docs/operators/deployment) 后，你就能通过 Heron [CLI tool](http://twitter.github.io/heron/docs/operators/heron-cli) 来管理拓扑了 ***笔者注释：Heron UI 可以用来进行拓扑状态监控，但目前还没有提供可视化的拓扑状态管理的入口。目前只能通过命令行的方式来管理拓扑状态*** 。拓扑可能的生命周期如下所示：
+在你正确配置[Heron cluster](http://twitter.github.io/heron/docs/operators/deployment) 后，你就能通过 Heron [CLI tool](http://twitter.github.io/heron/docs/operators/heron-cli) 来管理拓扑了 ***笔者注释：Heron UI 可以用来进行拓扑状态监控，但目前还没有提供可视化的拓扑状态管理的入口。目前只能通过命令行的方式来管理拓扑状态*** 。拓扑可能的生命周期如下所示：
 
 1. 提交[submit](http://twitter.github.io/heron/docs/operators/heron-cli#submitting-a-topology) 提交拓扑至集群。此时拓扑已随时做好被激活的准备。
 
@@ -28,18 +28,18 @@ Spout 负责将 tuple 发送到拓扑中，bolt 负责接收并处理这些 tupl
 
 Heron **spout** 是整个流处理的数据源，负责生成 tuples。例如，spout 会从 Kestrel 队列或者是 Twitter 读取推文的 API 中读取数据并将其转化为 tuple 发送给后续的 bolt。***笔者注释：这不仅仅是 Heron spout 的概念，Strom spout 也是同样的理念***
 
-可以参考 [构建 Spouts](http://twitter.github.io/heron/docs/developers/java/spouts) 页面，了解更多的相关信息。
+可以参考[构建 Spouts](http://twitter.github.io/heron/docs/developers/java/spouts) 页面，了解更多的相关信息。
 
 ## Bolts
 
 A Heron **bolt** 从 spout 端消费 tuple 数据流。用户可以在 bolt 中定义任何处理算法，例如：数据转换，持久化存储，聚合多流数据或者是发送 tuple 给其他 bolt 进行后续处理，等等。***笔者注释：这不仅仅是 Heron bolt 的概念，Strom bolt 也是同样的理念***
 
-可以参考 [构建 Bolt](http://twitter.github.io/heron/docs/developers/java/bolts) 页面，了解更多的相关信息。
+可以参考[构建 Bolt](http://twitter.github.io/heron/docs/developers/java/bolts) 页面，了解更多的相关信息。
 
 
 ## 数据模型 (Data Model)
 
-Heron 构建在基于 tuple 驱动的数据模型之上。可参考 [Heron 数据模型](http://twitter.github.io/heron/docs/developers/data-model) 页面了解更多信息。
+Heron 构建在基于 tuple 驱动的数据模型之上。可参考[Heron 数据模型](http://twitter.github.io/heron/docs/developers/data-model) 页面了解更多信息。
 
 ## 逻辑执行计划 (Logical Plan)
 
