@@ -25,7 +25,7 @@ Heron 是继[Apache Storm](http://storm.apache.org)之后的下一代实时计�
 
 ## 设计目标 (Heron Design Goals)
 
-请参考 [Heron 设计目标](../Heron-Concepts/Heron-Topology.md)小节，全面了解 Heron 的设计理念。
+请参考 [Heron 设计目标](../Heron-Concepts/Heron-Topology.md)章节，全面了解 Heron 的设计理念。
 
 ## 拓扑组件 (Topology Components)
 
@@ -86,7 +86,7 @@ TM 有大量的可配置参数贯穿拓扑的整个生命周期，你可以在[�
 
 ### Heron Instance
 
-一个 **Heron Instance**(简称 HI) 具体对应处理一个 [spout](../Heron-Concepts/Heron-Topology.md#spouts) 或是一个 [bolt](../Heron-Concepts/Heron-Topology.md#bolts)。通过这种方式，可以让开发者调试和调优。
+一个 **Heron Instance**(简称 HI) 具体对应处理一个 [spout](../Heron-Concepts/Heron-Topology.md#Spouts) 或是一个 [bolt](../Heron-Concepts/Heron-Topology.md#Bolts)。通过这种方式，可以让开发者调试和调优。
 
 目前，Heron 仅支持 Java，所以所有的 HI 都是一个独立的[JVM](https://en.wikipedia.org/wiki/Java_virtual_machine)进程，未来会支持更多语言。
 
@@ -124,10 +124,37 @@ Heron Tracker (或者简称 Tracker) 可以理解为集群范畴(cluster-wide)�
 
 ## 拓扑提交时序 (Topology Submit Sequence)
 
-在[拓扑生命周期](../Heron-Concepts/Heron-Topology.md#topology-lifecycle)小节描述了 Heron 拓扑的各个状态。下图展现了 Heron 架构中的各个组件在执行 `submit` 和 `deactivate` 时的客户端交互时序图。同时，也揭示了拓扑何时能在 Heron UI 页面上的到展现。
+在[拓扑生命周期](../Heron-Concepts/Heron-Topology.md#拓扑生命周期)小节描述了 Heron 拓扑的各个状态。下图展现了 Heron 架构中的各个组件在执行 `submit` 和 `deactivate` 时的客户端交互时序图。同时，也揭示了拓扑何时能在 Heron UI 页面上的到展现。
 
 <!--
 The source for this diagram lives here:
 https://docs.google.com/drawings/d/10d1Q_VO0HFtOHftDV7kK6VbZMVI5EpEYHrD-LR7SczE
 -->
-<img src="/img/topology-submit-sequence-diagram.png" style="max-width:140%;!important;" alt="Topology Sequence Diagram"/>
+<img src="http://twitter.github.io/heron/img/topology-submit-sequence-diagram.png" style="max-width:140%;!important;" alt="Topology Sequence Diagram"/>
+
+### 拓扑提交流程简述 (Topology Submit Description)
+
+下面简述一下在使用本地调度器(local scheduler)的条件下，拓扑在提交和启动时是如果工作的。
+
+* 客户端 (Client)
+
+   当使用 `heron submit` 命令提交拓扑时，系统会首先执行拓扑中的 `main` 方法，随后会创建一个包含着拓扑逻辑执行计划的 `.defn` 文件。这时，系统会运行 `com.twitter.heron.scheduler.SubmitterMain` ，它负责为拓扑调用 uploader 和 launcher。uploader 会把拓扑的可执行包上传到指定路径。同时 launcher 也会向 State Manager 注册拓扑的逻辑计划和运行状态，并调用主调度器 main scheduler。
+
+
+* 共享服务 (Shared Services)
+
+    当 main scheduler (`com.twitter.heron.scheduler.SchedulerMain`) 被 launcher 调用后，它会从拓扑存储区(topology storage)获取拓扑信息(topology artifact，直译)，初始化 State Manager，准备用来确定哪几个 instances 归属于哪一个 container 的物理执行计划。然后，它会运行指定的 scheduler 如 `com.twitter.heron.scheduler.local.LocalScheduler` 以供每一个 container 执行 `heron-executor` 命令。
+
+* 拓扑 (Topologies)
+
+    `heron-executor` 用于启动每一个 container，同时也负责启动分配给 container 的 Topology Master 或 Heron Instances (Bolt/Spout)。需要注意的是目前，Topology Master 永远被分配给 container 0。当 `heron-executor` 执行到对应的 Heron Instances 时，它总先启动 Stream Manager 和 Metrics Manager，再通过调用 `com.twitter.heron.instance.HeronInstance` 启动每一个对应的实例。
+
+    每一个 Heron Instance 有两个线程：gateway 和 salve 线程。Gateway 线程主要负责与 Stream Manager 和 Metrics Manager 通信，Stream Manager 和 Metrics Manager 分别使用 `StreamManagerClient` and `MetricsManagerClient` 来响应 gateway 线程，也负责接收和发送来自 slave 线程的 tuple 信息。另外，根据物理执行计划创建的每一个 spout 或 bolt 都会持有一个 slave 线程。
+
+    当 Heron Instance 运行后，`StreamManagerClient` 会向 stream manager 注册并与其建立一个稳定的链接。注册成功后，gateway 线程开始发送物理计划给 slave 线程，然后运行相应的已分配的实例。 ***笔者注释：关于双线程处理模型 [Twitter Heron: Stream Processing at Scale](http://dl.acm.org/citation.cfm?id=2742788) 中有非常详尽的描述。***
+
+---
+
+***笔者后记***
+
+本小节应该说是 Heron 的核心部分，如果想更深入的了解相关信息，强烈建议阅读这篇论文 [Twitter Heron: Stream Processing at Scale](http://dl.acm.org/citation.cfm?id=2742788)。从文中可以看到，Heron 的整体架构相较于 Storm，可以说是脱胎换骨。首先架构中没有了 Nimbus，取而代之的是利用 Zookeeper 来管理拓扑。同时对于每一个拓扑，都有一个自己的 Topology Master 来贯穿自己的生命周期。TM 的设计思想可以和 YARN 中的 Application Master 类似但也不尽相同。然后提出了 container 概念，可在其中运行多个 Heron Instance，做到资源限制，同时也使得 Heron 可以近乎无缝的接入到各个共享资源调度系统中，如 Mesos、Yarn。再次使用独立的进程来负责 spout 或 bolt 正常运转，大大的方便了开发人员的调试和调优，也实现其设计目标中的隔离理念。最后 Stream Manager 的提出可以让拓扑之间的数据流转更加灵活，当然也有声音说，Stream Manager 有可能成为系统的性能瓶颈，笔者认为这确实可能是一个缺点，但并不能完全掩盖 Heron 带来的闪光点。
