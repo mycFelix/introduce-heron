@@ -11,7 +11,7 @@
 点击 [Releases 页面](https://github.com/twitter/heron/releases)，下载对应版本的 API 安装脚本，脚本符合如下命名规则：
 
 ```
-heron-api-install-{{% heronVersion %}}-PLATFORM.sh
+heron-api-install-${heronVersion}-PLATFORM.sh
 ```
 
 以 Mac OS X (`darwin`) 为例，API 安装脚本名为：`heron-api-install-${heronVersion}-darwin.sh`.
@@ -19,8 +19,8 @@ heron-api-install-{{% heronVersion %}}-PLATFORM.sh
 脚本下载完成后，可以使用 `--user` 和 `--maven` 参数来执行，示例如下
 
 ```
-$ chmod +x heron-api-install-{{% heronVersion %}}-PLATFORM.sh
-$ ./heron-api-install-{{% heronVersion %}}-PLATFORM.sh --user --maven
+$ chmod +x heron-api-install-${heronVersion}-PLATFORM.sh
+$ ./heron-api-install-${heronVersion}-PLATFORM.sh --user --maven
 Heron API installer
 -------------------
 
@@ -32,7 +32,7 @@ Heron API is now installed!
 
 See http://heronstreaming.io/docs/getting-started for how to use Heron.
 
-heron.build.version : '{{% heronVersion %}}'
+heron.build.version : '${heronVersion}'
 heron.build.time : ...
 heron.build.timestamp : ...
 heron.build.host : ${HOSTNAME}
@@ -128,7 +128,13 @@ $ heron submit local \
 
 ```
 $ heron submit local \
-  ~/.heron/examples/heron-examples.jar \ # The path of the topology's jar file
-  com.twitter.heron.examples.ExclamationTopology \ # The topology's Java class
+  ~/.heron/examples/heron-examples.jar \ # 拓扑 Jar 文件所在路径
+  com.twitter.heron.examples.ExclamationTopology \ # 拓扑中的 Java Class
   ExclamationTopology # The name of the topology
 ```
+
+---
+
+***笔者后记***
+
+总体来讲，笔者个人的经验是：**迁移基本上是无痛的。** 当然，痛点也还是有的。如果你使用的是 `backtype.storm` API ，那么最真诚的建议是借此机会修改代码，将拓扑迁移到 `org.apache.storm`。毕竟 Apache Storm 也已经完成了类似的 API 转换，同时后续版本 (1.0.x 以后) 将会只提供 `org.apache.storm` 的更新。同时，也请注意一下 `Kryo` 序列化问题，如有一些类没有完成注册，也请注册一下。某些针对性的问题会在后续建立专题讨论。
