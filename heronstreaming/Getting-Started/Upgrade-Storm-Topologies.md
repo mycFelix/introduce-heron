@@ -10,7 +10,7 @@
 
 点击 [Releases 页面](https://github.com/twitter/heron/releases)，下载对应版本的 API 安装脚本，脚本符合如下命名规则：
 
-```
+```bash
 heron-api-install-${heronVersion}-PLATFORM.sh
 ```
 
@@ -18,7 +18,7 @@ heron-api-install-${heronVersion}-PLATFORM.sh
 
 脚本下载完成后，可以使用 `--user` 和 `--maven` 参数来执行，示例如下
 
-```
+```bash
 $ chmod +x heron-api-install-${heronVersion}-PLATFORM.sh
 $ ./heron-api-install-${heronVersion}-PLATFORM.sh --user --maven
 Heron API installer
@@ -43,7 +43,7 @@ heron.build.git.status : Clean
 
 此时，Heron API 将会被安装到本地的 Maven 仓库中
 
-```
+```bash
 $ ls ~/.m2/repository/com/twitter/heron
 heron-api
 heron-spi
@@ -54,7 +54,7 @@ heron-storm
 
 将如下代码拷贝至已有的 `pom.xml` [依赖](https://maven.apache.org/pom.html#Dependencies)文件中。
 
-```
+```bash
 <dependency>
   <groupId>com.twitter.heron</groupId>
   <artifactId>heron-api</artifactId>
@@ -73,7 +73,7 @@ heron-storm
 
 删除 Storm 的相关依赖代码
 
-```
+```bash
 <dependency>
   <groupId>org.apache.storm</groupId>
   <artifactId>storm-core</artifactId>
@@ -86,7 +86,7 @@ heron-storm
 
 如果 `pom.xml` 文件中有形如如下代码块的 [Clojure plugin](https://maven.apache.org/pom.html#Plugins) 的相关依赖，请删除。
 
-```
+```xml
 <plugin>
   <groupId>com.theoryinpractise</groupId>
   <artifactId>clojure-maven-plugin</artifactId>
@@ -105,7 +105,7 @@ heron-storm
 
 运行 [Maven lifecycle](https://maven.apache.org/run.html) 命令：
 
-```
+```bash
 $ mvn clean
 $ mvn compile
 $ mvn package
@@ -117,16 +117,16 @@ $ mvn package
 
 此时，你可以根据具体需要使用 `heron submit` 运行升级后的拓扑，可以参考[快速上手指南](../Getting-Started/Local(Single-Node).md)，如下命令展示了将拓扑提交到 `local` 环境的命令示例。
 
-```
+```bash
 $ heron submit local \
   ${basedir}/target/PATH-TO-PROJECT.jar \
   TOPOLOGY-FILE-NAME \
   TOPOLOGY-CLASS-NAME
 ```
 
-使用 [快速上手指南](../Getting-Started/Local(Single-Node).md) 中的示例拓扑加以说明：
+使用[快速上手指南](../Getting-Started/Local(Single-Node).md) 中的示例拓扑加以说明：
 
-```
+```bash
 $ heron submit local \
   ~/.heron/examples/heron-examples.jar \ # 拓扑 Jar 文件所在路径
   com.twitter.heron.examples.ExclamationTopology \ # 拓扑中的 Java Class
@@ -137,4 +137,4 @@ $ heron submit local \
 
 ***笔者后记***
 
-总体来讲，笔者个人的经验是：**迁移基本上是无痛的。** 当然，痛点也还是有的。如果你使用的是 `backtype.storm` API ，那么最真诚的建议是借此机会修改代码，将拓扑迁移到 `org.apache.storm`。毕竟 Apache Storm 也已经完成了类似的 API 转换，同时后续版本 (1.0.x 以后) 将会只提供 `org.apache.storm` 的更新。同时，也请注意一下 `Kryo` 序列化问题，如有一些类没有完成注册，也请注册一下。某些针对性的问题会在后续建立专题讨论。
+总体来讲，笔者个人的经验是：**迁移基本上是无痛的。** 当然，痛点也还是有的。如果你使用的是 `backtype.storm` API ，那么最真诚的建议是借此机会修改代码，将拓扑迁移到 `org.apache.storm`。毕竟 Apache Storm 也已经完成了类似的 API 转换，同时后续版本 (1.0.x 以后) 将会只提供 `org.apache.storm` 的更新。另外，也请注意一下 `Kryo` 序列化问题，如有一些类没有完成注册，也请注册一下。某些针对性的问题会在后续建立专题讨论。

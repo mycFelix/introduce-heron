@@ -7,7 +7,7 @@
 * [Building on Linux Platforms](../Heron-Developers/Compiling-on-Linux.md)
 * [Building on Mac OS X](../Heron-Developers/Compiling-on-MacOSX.md)
 
-Heron 支持开发者进行全编译，独立组件编译，发布可执行版本。
+Heron 支持开发者进行全编译、独立组件编译和发布可执行版本等操作。
 
 可以在 [Testing Heron](http://twitter.github.io/heron/docs/contributors/testing/) 文档中找到运行 Heron 单元测试用例的相关指南。
 
@@ -17,13 +17,13 @@ Heron 支持开发者进行全编译，独立组件编译，发布可执行版�
 
 * [Bazel](http://bazel.io/docs/install.html) = 0.3.1 不确定更高级的版本是否可以正常编译
 * [Java
-  8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) Heron 的拓扑使用 Java 7 或者以上版本，同时 Heron 所有的 Jar 也兼容 Java 7. Java 8 是 Bazel 的运行时必要环境。
+  8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) Ja是 Bazel 的运行时必要环境。Heron 的拓扑可使用 Java 7 或者以上版本开发，同时 Heron 所有运行时的 Jar 也兼容 Java 7.
 * [Autoconf](http://www.gnu.org/software/autoconf/autoconf.html) >=
   2.6.3
 * [Automake](https://www.gnu.org/software/automake/) >= 1.11.1
 * [GNU Make](https://www.gnu.org/software/make/) >= 3.81
 * [GNU Libtool](http://www.gnu.org/software/libtool/) >= 2.4.6
-* [gcc/g++](https://gcc.gnu.org/) >= 4.8.1 (Linux platforms) ***笔者注释：Heron 使用 C++、Java、Python 三种语言开发，所有需要 C++ 的编译环境***
+* [gcc/g++](https://gcc.gnu.org/) >= 4.8.1 (Linux platforms) ***笔者注释：Heron 使用 C++、Java、Python 三种语言开发，所以需要 C++ 的编译环境***
 * [CMake](https://cmake.org/) >= 2.6.4
 * [Python](https://www.python.org/) >= 2.7 (not including Python 3.x)
 * [Perl](https://www.perl.org/) >= 5.8.8
@@ -48,7 +48,7 @@ Heron 使用 [Bazel](http://bazel.io) 做为其构建工具。Bazel 的发布版
 
 可以执行 Python 脚本来自动配置 Bazel 的编译运行时信息。
 
-```
+```bash
 $ cd /path/to/heron
 $ ./bazel_configure.py
 ```
@@ -65,13 +65,13 @@ $ ./bazel_configure.py
 
 以 Mac OS X (`darwin`) 平台举例，可以使用如下命令进行全编译：
 
-```
+```bash
 $ bazel build --config=darwin heron/...
 ```
 
-在发布生产环境版本时，可以通过使用 `opt` 参数，来开启编译期优化选项。开启该选项后，编译时间也会有所增加。
+在发布生产环境版本时，可以使用 `opt` 参数开启编译期优化选项。该选项开启后，编译时间也会有所增加。
 
-```
+```bash
 $ bazel build -c opt --config=PLATFORM heron/...
 ```
 
@@ -79,7 +79,7 @@ $ bazel build -c opt --config=PLATFORM heron/...
 
 可以利用 Bazel 构建可执行的 shell 安装脚本或者 tar 安装包。如想一次性构建 Heron 的所有组件，可以使用如下命令：
 
-```
+```bash
 $ bazel build --config=PLATFORM scripts/packages:binpkgs
 $ bazel build --config=PLATFORM scripts/packages:tarpkgs
 ```
@@ -88,9 +88,9 @@ $ bazel build --config=PLATFORM scripts/packages:tarpkgs
 
 ### 编译指定的组件 (Building Specific Components)
 
-如果并不想进行耗时的全编译，你可以选择编译某个独立的组件。如只想编译 `Heron Tracker`，可以执行以下命令
+如果并不想进行耗时的全编译，你可以选择编译某个独立的组件。如只编译 `Heron Tracker`，可以执行以下命令
 
-```
+```bash
 $ bazel build --config=darwin heron/tools/tracker/src/python:heron-tracker
 ```
 

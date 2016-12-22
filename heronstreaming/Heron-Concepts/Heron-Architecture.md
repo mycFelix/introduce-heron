@@ -21,7 +21,7 @@ Heron 是继[Apache Storm](http://storm.apache.org)之后的下一代实时计�
 1. 基于进程处理模型(process-based)替代 Storm 线程处理模型(thread-based)，在性能、可靠性以及其他方面超越 Storm。
 2. 全部保留 Storm 数据模型和[拓扑API](http://storm.apache.org/about/simple-api.html)。
 
-更多深入实现，可以参考论文：[Twitter Heron:Stream Processing at Scale](http://dl.acm.org/citation.cfm?id=2742788)
+更多深入实现，可以参考论文 [Twitter Heron:Stream Processing at Scale](http://dl.acm.org/citation.cfm?id=2742788)
 
 ## 设计目标 (Heron Design Goals)
 
@@ -74,19 +74,23 @@ TM 有大量的可配置参数贯穿拓扑的整个生命周期，你可以在[�
 
 一旦处理较慢的 bolt **B3** 重新开始正常工作，container **A** 中的 SM 会通知其他的 SM 恢复正常的数据流作业。
 
-***笔者注释：针对 Heron 的背压机制可以打个比方就是：上游的兄弟们，我这儿快忙不过来了，你们先歇会儿，等我忙完了，你们在发数据。***
+***笔者注释***
 
-**“由谁来感知“忙不过来呢？”**  *-- 由当前 container 所运行SM。*
+```
+针对 Heron 的背压机制可以打个比方就是：上游的兄弟们，我这儿快忙不过来了，你们先歇会儿，等我忙完了，你们在发数据。
 
-**“用什么样的方式来告知兄弟们呢？”** *-- 由 SM 来告知它兄弟们。*
+“由谁来感知“忙不过来呢？”  -- 由当前 container 所运行SM。
 
-**“由谁来暂时切断数据流入呢？”** *-- 由当前 container 所运行SM。*
+“用什么样的方式来告知兄弟们呢？” -- 由 SM 来告知它兄弟们。
 
-***直观来看，背压机制有效的防止了拓扑的因缓冲区爆满而导致异常崩溃。但同时要意识到，一旦触发了背压机制，可能意味着这段时间内拓扑的处理量已经达到系统瓶颈，应做适当调整。***
+“由谁来暂时切断数据流入呢？” -- 由当前 container 所运行SM。
+
+直观来看，背压机制有效的防止了拓扑的因缓冲区爆满而导致异常崩溃。但同时要意识到，一旦触发了背压机制，可能意味着这段时间内拓扑的处理量已经达到系统瓶颈，应做适当调整。
+```
 
 #### Stream Manger 的配置 (Stream Manger Configuration)
 
-与 Topology Master 一样，Stream Manger 也有很多配置参数供开发选择。可参考 [配置参数](http://twitter.github.io/heron/docs/operators/configuration/tmaster/)小节
+与 Topology Master 一样，Stream Manger 也有很多配置参数供开发选择。可参考[配置参数](http://twitter.github.io/heron/docs/operators/configuration/tmaster/)小节
 
 ### Heron Instance
 
@@ -98,7 +102,7 @@ TM 有大量的可配置参数贯穿拓扑的整个生命周期，你可以在[�
 
 #### Heron Instance 配置 (Heron Instance Configuration)
 
-Heron Instance 有很多配置参数供开发选择。可参考 [配置参数](http://twitter.github.io/heron/docs/operators/configuration/tmaster/)小节
+Heron Instance 有很多配置参数供开发选择。可参考[配置参数](http://twitter.github.io/heron/docs/operators/configuration/tmaster/)小节
 
 ### Metrics Manager
 
