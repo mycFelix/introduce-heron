@@ -6,12 +6,12 @@
 
 YARN 调度器的核心功能：
 
-* **异构容器分配(heterogeneous container allocation)**：YARN 调度器会像 YARN 资源管理器 [RM](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) 申请异构容器(heterogeneous containers)。这意味着，拓扑不会过分申请资源。
-* **资源重用(container reuse)**：REEF 框架可以尽力保证 YARN 容器的可用性，即便是在拓扑重启(restarts)时也是如此。
+* **异构容器分配(heterogeneous container allocation)**：调度器会向 YARN 的资源管理器 [RM](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) 申请异构容器(heterogeneous containers)。这意味着，拓扑不会过分申请资源。
+* **资源重用(container reuse)**：REEF 框架尽力保证 YARN 容器的可用性，即便是在拓扑重启(restarts)时也是如此。
 
 ## Topology deployment on a YARN Cluster
 
-和其他调度器一样，YARN 调度器目前也是使用 Heron 命令行工具提交拓扑。本文档假设 Hadoop YARN 已配置正确且可正常运行。
+和其他调度器一样，YARN 调度器目前也使用 Heron 命令行工具提交拓扑。本文档假设 Hadoop YARN 已配置正确且可正常运行。
 
 拓扑提交时 YARN 调度器会做以下几步操作：
 
@@ -26,7 +26,7 @@ YARN 调度器的核心功能：
 
 > **Tips**
 >
->***请认真阅读一下内容，该内容适用于 Heron 0.14.2(包含)以后的任何版本***
+>***请认真阅读以下内容，该内容适用于 Heron 0.14.2(包含)以后的任何版本***
 >
 >对于`本地文件系统状态管理器`(localfs-state-manager)
 >
@@ -40,7 +40,7 @@ YARN 调度器的核心功能：
 
 ### Configure the YARN scheduler
 
-可以在 [conf/yarn](https://github.com/twitter/heron/tree/master/heron/config/src/yaml/conf/yarn) 路径下查看，默认的 YARN 调度器配置。缺省配置使用本地文件系统状态管理器 `local state manager`，它仅在单节点的 YARN 环境中使用。如果是在 YARN 集群环境，请使用 Zookeeper 状态管理器
+可以在 [conf/yarn](https://github.com/twitter/heron/tree/master/heron/config/src/yaml/conf/yarn) 路径下查看默认的 YARN 调度器配置。缺省配置使用本地文件系统状态管理器 `local state manager`，它仅在单节点的 YARN 环境中使用。如果是 YARN 集群环境，请使用 Zookeeper 状态管理器
 
 1. YARN 通用的 Heron Launcher： `YarnLauncher`
 2. YARN 通用的 Heron Scheduler： `YarnScheduler`
@@ -53,13 +53,12 @@ YARN 调度器的核心功能：
 
 **命令**
 
-**Heron 0.14.3 以后版本**
-
 `$ heron submit yarn heron-examples.jar com.twitter.heron.examples.AckingTopology AckingTopology --extra-launch-classpath <extra-classpath-value>`
 
 >**Tips**
 >
 >1.关于 `--extra-launch-classpath` 参数。您可以将所有 `hadoop-lib-jars` 放置到一个路径下，也可以将 `hadoop classpath` 命令中的路径用冒号(:)连接起来一起提交。***如果有 Jar 路径缺失，提交过程将会失败***
+>
 >2. 如果您希望将拓扑提交至 YARN 的指定队列上运行，您可以在 `--config-property` 参数中添加 `heron.scheduler.yarn.queue` 配置，如提交拓扑至 `test` 队列：`--config-property heron.scheduler.yarn.queue=test` 。同样，这个配置也可以在 [conf/yarn/scheduler](https://github.com/twitter/heron/blob/master/heron/config/src/yaml/conf/yarn/scheduler.yaml) 中找到。默认队列 YARN 提供的 `default` 队列。
 
 **输出样例**
