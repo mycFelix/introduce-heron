@@ -11,19 +11,19 @@ Heron 的设计理念是可被部署在以调度系统为驱动的集群环境�
 ***笔者注释：为避免歧义，组件将使用英文名描述***
 
 * **Scheduler** --- Heron 需要一个调度器来运行拓扑。Heron 可以被部署在目前主流的大数据调度系统中，目前支持：
-  * [Aurora](schedulers/aurora)
+  * [Aurora](http://twitter.github.io/heron/docs/operators/deployment/schedulers/aurora/)
   * [Local](schedulers/local)
   * [Slurm](schedulers/slurm)
-  * [YARN](schedulers/yarn)
+  * [YARN](../Schedulers/YARN-Cluster.md)
 
 * **State Manager** --- Heron 状态管理器负责管理拓扑的运行时状态，包括：逻辑计划，物理计划，执行状态。Heron 目前支持一下两种状态管理器:
   * [Local File System](../State-Managers/Local-FS.md)
   * [Zookeeper](../State-Managers/Zookeeper.md)
 
 * **Uploader** --- Heron 上传器负责上传拓扑 jar 至服务器。目前支持的上传器包括：
-  * [HDFS](uploaders/hdfs)
-  * [Local File System](uploaders/localfs)
-  * [Amazon S3](uploaders/s3)
+  * [HDFS](http://twitter.github.io/heron/docs/operators/deployment/uploaders/hdfs)
+  * [Local File System](http://twitter.github.io/heron/docs/operators/deployment/uploaders/localfs)
+  * [Amazon S3](http://twitter.github.io/heron/docs/operators/deployment/uploaders/s3)
 
 * **Metrics Sinks** --- Heron 会在收集拓扑运行时的多个指标。这些指标可被导出至外部存储系统用以离线分析，目前支持：
   * `File Sink`
@@ -45,4 +45,4 @@ Heron 是可以被运行在现有的各种资源调度系统中的，也就是�
 
 我们现在再来捋一下思路：Heron 可以被部署在多个集群上，每个集群都有自己的调度器和拓扑状态管理系统，Tracker 可以监听多个状态管理系统，UI 负责展现。
 
-还要说明的一点是：目前调度器还支持 Mesos Cluster Locally，Slurm Cluster。
+还要说明的一点是：目前调度器还支持 Mesos Cluster Locally。
