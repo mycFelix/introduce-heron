@@ -1,6 +1,8 @@
 # Markdown Guide
 
-目前 markdown 已经一个程序界主流的文字排版语言。关于 markdown 语法本身，我就不多赘述了，网络上有非常多的参考资料，如：[Github Markdown Guide](https://guides.github.com/features/mastering-markdown/) 或 [MarkDown 中文网](www.markdown.cn/)。我在这里想说明一些文字排版规范：
+目前 markdown 已经一个程序界主流的文字排版语言。关于 markdown 语法本身，我就不多赘述了，网络上有非常多的参考资料，如：[Github Markdown Guide](https://guides.github.com/features/mastering-markdown/) 或 [MarkDown 中文网](www.markdown.cn/)。
+
+我在这里想说明一些文字排版规范：
 
 * 中英文混排，请用空格区分，举例如下
 
@@ -29,7 +31,7 @@ Heron 是继 [Apache Storm](http://storm.apache.org) 之后的下一代实时计
 * “笔者注释”用加粗斜体字表示，特殊场景可用文本框标识，举例如下：
 
 ```
-***笔者注释：关于双线程处理模型 [Twitter Heron: Stream Processing at Scale](http://dl.acm.org/citation.cfm?id=2742788) 中有非常详尽的描述。***
+***笔者注释：关于双线程处理模型，论文中有非常详尽的描述。***
 ```
 
 * 中文加粗字体与正文之间不用加空格，举例如下：
