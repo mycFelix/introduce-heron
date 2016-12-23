@@ -10,13 +10,13 @@ Heron 需要利用 Zookeeper 做一些组织协调工作(coordination tasks)。�
 
 ### ZooKeeper State Manager Configuration
 
-可以通过修改 `statemgr.yaml` 文件中的参数来调整 Heron 集群对 Zookeeper 的使用。其中包括一下参数：
+可以通过修改 `statemgr.yaml` 文件中的参数来调整 State Manager 对 Zookeeper 的使用。其中包括以下参数：
 
-* `heron.class.state.manager` --- 告知系统 State Manager 的加载类，系统会通过反射的方式加载它。在 Zookeeper 模式下，请将其设置为 `com.twitter.heron.statemgr.zookeeper.curator.CuratorStateManager`。
+* `heron.class.state.manager` --- 设置 State Manager 的加载类，系统会通过反射的方式加载它。在 Zookeeper 模式下，请将其设置为 `com.twitter.heron.statemgr.zookeeper.curator.CuratorStateManager`。
 
 * `heron.statemgr.connection.string` --- Zookeeper 连接串，必须包含 IP、端口(port)等信息，形如：`127.0.0.1:2181`。
 
-* `heron.statemgr.root.path` --- 设置 Zookeeper root path，我们强烈建议使用一个独立的根节点。否则，请确保`/tmasters`, `/topologies`, `/pplans`, `/executionstate`, `/schedulers`的可用性。
+* `heron.statemgr.root.path` --- 设置 State Manager 根路径，我们强烈建议使用一个独立的根节点。否则，请确保`/tmasters`, `/topologies`, `/pplans`, `/executionstate`, `/schedulers`的可用性。
 
 * `heron.statemgr.zookeeper.is.initialize.tree` --- 设置 Zookeeper 的节点是否按树状展开，默认为 `True`
 

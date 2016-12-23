@@ -17,7 +17,7 @@ Heron 的设计理念是可被部署在以调度系统为驱动的集群环境�
   * [YARN](schedulers/yarn)
 
 * **State Manager** --- Heron 状态管理器负责管理拓扑的运行时状态，包括：逻辑计划，物理计划，执行状态。Heron 目前支持一下两种状态管理器:
-  * [Local File System](statemanagers/localfs)
+  * [Local File System](../State-Managers/Local-FS.md)
   * [Zookeeper](../State-Managers/Zookeeper.md)
 
 * **Uploader** --- Heron 上传器负责上传拓扑 jar 至服务器。目前支持的上传器包括：
