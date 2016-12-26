@@ -23,7 +23,7 @@ topology.kryo.register:
 
 ***笔者后记***
 
-Heron 全面使用 Kryo 进行 tuple 序列化，在编写拓扑时，我们也可以通过 Config.registerSerialization() 方法注册序列化类。如，在 Kryo 注册 `LinkedHashMap`
+Heron 全面使用 Kryo 进行 tuple 序列化，在编写拓扑时，我们也可以通过 Config.registerSerialization() 方法注册序列化类。如，在 Kryo 注册 `LinkedHashMap`，并声明使用 `MapSerializer` 执行序列化和反序列化。
 
 ```java
 org.apache.storm.Config config = new Config();
