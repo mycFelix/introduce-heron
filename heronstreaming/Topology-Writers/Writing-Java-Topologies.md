@@ -46,7 +46,12 @@ builder.setBolt("exclaim", new ExclamationBolt(), 4);
 
 如何定义 spout 和 bolt 的关系是非常重要的，否则拓扑将无法正常传递数据。目前有支持以下几种 tuple 分组策略：
 
-待续
+* Fields Grouping: tuple 按照指定的字段(field)分组，相同字段值(field's value)的 tuple 会发给同一个 bolt 实例处理。
+* Global Grouping: 把所有数据源创建的元组发送给单一目标实例（即拥有最低ID的任务）
+* Shuffle Grouping: tuple 会随机发送到不同的 bolt 实例处理。
+* None Grouping: 目前，与 Shuffler Grouping 效果相同。
+* All Grouping: 所有 tuple 都被发送到每一个 bolt 实例上。
+* Custom Grouping: 用户自定义分组策略。
 
 如下代码片段便是使用 shuffle grouping 的方式来连接 `word` spout 和 `exclaim` bolt
 
@@ -71,4 +76,10 @@ HeronTopology topology = builder.createTopology();
 
 * com.twitter.heron.api.* : 其包含的是 Heron 的 API ，文档中提到的 `HeronTopology` 便来自其中，同理 `TopologyBuilder` 也是。它只能解析 `com.twitter.heron.api.*` 名下面的类。其实不难理解，因为总不能指望 `org.apache.storm.TopologyBuilder` 类返回一个 `HeronTopology` 对象吧？
 
-待续
+* org.apache.storm.* : 其包含 Apache Storm 1.0.x 后的 API，支持拓扑从 Apache Storm 迁移到 Heron 兼容性。
+
+* backType.storm.* : 其包含 Apache Storm 0.x.x 后的 API，支持拓扑从 Apache Storm 迁移到 Heron 兼容性。
+
+综上所述，在 Heron 拓扑的相关开发中，开发者自身应非常明确自己所使用的 Heron API 或 Storm API 版本。笔者使用 `org.apache.storm.*` ，基本不用更改拓扑代码，便能直接部署。如使用 `com.twitter.heron.api.*` ，至少 `TopologyBuilder` 处需要做响应的修改。根据 Heron 官网的建议，Heron API 可能还会在后续 Release 版本中发生改动，目前使用 `org.apache.storm.*` 是比较稳妥的方案。不过有些功能也仅支持 Heron API，比如仿真器模式(simulate mode)。
+
+关于编写拓扑的更详细内容，我们后续的专题中深入讨论。
