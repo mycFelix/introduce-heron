@@ -1,4 +1,4 @@
-# 在 Linux 平台上编译 Heron (Building on Linux Platforms)
+# [在 Linux 平台上编译 Heron](http://twitter.github.io/heron/docs/developers/compiling/linux/)
 
 Heron 现在支持在以下两个 Linux 平台上编译
 

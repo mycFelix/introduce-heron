@@ -1,4 +1,4 @@
-# Setting Up Local File System State Manager
+# [Setting Up Local File System State Manager](http://twitter.github.io/heron/docs/operators/deployment/statemanagers/localfs/)
 
 Heron 可以使用本地文件系统做为状态管理器来持久化诸多信息。该模式并不适合集群部署，建议仅仅在单节点或笔记本电脑上使用此模式，而且相关参数也都是为终端设备而设计的。Heron 的开发者们可以使用这个模式来进行 Heron 组件的本地开发和验证。
 

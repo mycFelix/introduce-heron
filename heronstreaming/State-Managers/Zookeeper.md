@@ -1,4 +1,4 @@
-# ZooKeeper State Manager
+# [ZooKeeper State Manager](http://twitter.github.io/heron/docs/operators/deployment/statemanagers/zookeeper/)
 
 Heron 需要利用 Zookeeper 做一些组织协调工作(coordination tasks)。我们既可以复用已有的 Zookeeper 集群，也可以为 Heron 搭建专有的集群。
 

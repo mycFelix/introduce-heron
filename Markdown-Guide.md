@@ -1,6 +1,6 @@
 # Markdown Guide
 
-目前 markdown 已经一个程序界主流的文字排版语言。关于 markdown 语法本身，我就不多赘述了，网络上有非常多的参考资料，如：[Github Markdown Guide](https://guides.github.com/features/mastering-markdown/) 或 [MarkDown 中文网](www.markdown.cn/)。
+目前 markdown 已经一个程序界主流的文字排版语言。关于 markdown 语法本身，我就不多赘述了，网络上有非常多的参考资料，如：[Github Markdown Guide](https://guides.github.com/features/mastering-markdown/) 或 [MarkDown 中文网](http://www.markdown.cn/)。
 
 我在这里想说明一些文字排版规范：
 

@@ -1,4 +1,4 @@
-# 配置集群 (Configuring a Cluster)
+# [配置集群](http://twitter.github.io/heron/docs/operators/deployment/configuration/)
 
 在启动 Heron 集群之前，有一些配置文件需要设置。每个文件对应着一个 Heron 计算框架的组件。
 

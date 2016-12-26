@@ -1,4 +1,4 @@
-# Setting Up Local File System Uploader
+# [Setting Up Local File System Uploader](http://twitter.github.io/heron/docs/operators/deployment/uploaders/localfs/)
 
 ***笔者注释：Uploader 顾名思义，就是负责将 Jar 上传到指定共享路径，然后再被下载和分发。需要注意的是 Heron on Yarn 模式不需要设置 Uploader。***
 

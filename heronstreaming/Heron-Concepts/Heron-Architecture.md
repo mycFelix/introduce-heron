@@ -1,4 +1,4 @@
-# Heron 架构
+# [Heron 架构](http://twitter.github.io/heron/docs/concepts/architecture/)
 
 ***笔者注释：这应该是最难翻译的一篇了。笔者会尽自己所能展现原文语义，并努力争取得到 Heron Core Committer 的校对***
 

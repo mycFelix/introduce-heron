@@ -1,4 +1,4 @@
-# Heron 拓扑 (Heron Topology)
+# [Heron 拓扑](http://twitter.github.io/heron/docs/concepts/topologies/)
 
 ***笔者注释：如果对 Storm 有了解的同学可以跳过这一章节，Heron Topology 和 Storm Topology 并无本质差别***
 

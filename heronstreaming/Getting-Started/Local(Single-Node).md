@@ -1,4 +1,4 @@
-# 快速上手指南
+# [快速上手指南](http://twitter.github.io/heron/docs/getting-started/)
 
 学习 Heron 的最佳实践是安装并运行 Heron 提供的可运行版本。当前 Heron 仅支持以下版本：
 

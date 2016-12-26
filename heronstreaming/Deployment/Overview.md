@@ -1,4 +1,4 @@
-# 部署 Heron (Deploying Heron)
+# [部署 Heron](http://twitter.github.io/heron/docs/operators/deployment)
 
 Heron 的设计理念是可被部署在以调度系统为驱动的集群环境中。它既可以部署在共享集群(multi-tenant)上，也可以已专有集群(dedicated)形式提供服务。另外，Heron 还支持多集群部署，以便用户可以将拓扑提交到指定的集群之中。每一个 Heron 集群都会有一个独立的`调度器(scheduler)`。下图是一个典型的 Heron 部署示意图。
 

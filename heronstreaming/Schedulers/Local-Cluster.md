@@ -1,4 +1,4 @@
-# Local Cluster
+# [Local Cluster](http://twitter.github.io/heron/docs/operators/deployment/schedulers/local)
 
 为了让开发者更好的了解 Heron 的新特性，本地测试新功能，Heron 为我们提供了单机伪分布式集群部署方案。
 

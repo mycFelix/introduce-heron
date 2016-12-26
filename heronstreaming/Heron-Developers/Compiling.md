@@ -1,4 +1,4 @@
-# 编译 Heron (Compiling Heron)
+# [编译 Heron](http://twitter.github.io/heron/docs/developers/compiling/compiling/)
 
 ***笔者注释：大家拿到开源软件的第一步就是进行编译，Heron 的编译有一些小技巧。本文档旨会先对官方文档进行翻译，而后再介绍笔者的一些经验***
 

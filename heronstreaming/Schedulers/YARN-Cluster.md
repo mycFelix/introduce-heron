@@ -1,4 +1,4 @@
-# Apache Hadoop YARN Cluster
+# [Apache Hadoop YARN Cluster](http://twitter.github.io/heron/docs/operators/deployment/schedulers/yarn/)
 
 ***笔者注释：Heron 现已发布 0.14.5 版本，本文档将略过 0.14.3 以下版本的配置&部署方案***
 

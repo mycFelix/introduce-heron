@@ -1,4 +1,4 @@
-# Heron 设计目标 (Heron Design Goals)
+# [Heron 设计目标](http://twitter.github.io/heron/docs/concepts/design-goals/)
 
 ***笔者注释：这是比较专业的且核心的部分，笔者尽力还原原文语义，如有偏差还请指出***
 

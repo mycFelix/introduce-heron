@@ -1,4 +1,4 @@
-# 在 Mac 平台上编译 Heron (Building on Mac OS X)
+# [在 Mac 平台上编译 Heron](http://twitter.github.io/heron/docs/developers/compiling/mac/)
 
 可以在 Mac (versions 10.10 and 10.11) 平台上，依次执行如下命令，进行 Heron 的编译。
 
