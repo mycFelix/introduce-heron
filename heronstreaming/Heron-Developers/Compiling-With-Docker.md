@@ -2,7 +2,7 @@
 
 您可能需要本地环境中编译不同平台的 Heron 可执行文件。Heron 提供了相关脚本文件，满足您利用 Docker 编译不同平台可执行文件的需求。
 
-目前，仅支持编译 Ubuntu 14.04、Ubuntu 15.10 和 CentOS7 平台。如果您需要新的平台，您可以根据[编写 Docker 文件小节](#contributing-new-environments)的指引添加新文件。
+目前，仅支持编译 Ubuntu 14.04、Ubuntu 15.10 和 CentOS7 平台。如果您需要新的平台，您可以根据[编写新平台的 `Dockerfile` 小节](#编写新平台的-dockerfile-contributing-new-environments)的指引添加新文件。
 
 ## 前置编译条件 (Requirements)
 
