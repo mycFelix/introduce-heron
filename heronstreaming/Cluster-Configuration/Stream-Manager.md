@@ -11,6 +11,10 @@
 `heron.streammgr.network.backpressure.lowwatermark.md` | The low water mark on the number of megabytes that can be left outstanding on a connection | `30`
 `heron.streammgr.network.options.maximum.packet.mb` | SM 网络选项中的消息包大小，单位：MB | `100`
 
+---
+***笔者注释：***
+关于背压机制 high/low watermark 的理解可以简述为：当 buffer size 到达 50MB(highwatermark) 以上时会触发背压机制；进入背压状态后，当且仅当 buffer size 小于 30MB(lowwatermark) 之后，Stream Manager 会停止背压状态。更深入的描述，可以参考 [Twitter-Heron](http://dl.acm.org/citation.cfm?id=2742788) 论文。
+
 ## Timeout Interval
 
 参数 | 描述 | 默认值
